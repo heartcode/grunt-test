@@ -13,13 +13,28 @@ module.exports = function(grunt) {
         src: 'src/hcl.js',
         dest: 'build/hcl.min.js'
       }
+    },
+    yuidoc: {
+      compile: {
+        name: '<%= pkg.name %>',
+        description: '<%= pkg.description %>',
+        version: '<%= pkg.version %>',
+        url: '<%= pkg.homepage %>',
+        options: {
+          paths: 'src',
+          outdir: 'docs'
+        }
+      }
     }
   });
 
   // Load the plugin that provides the "uglify" task.
   grunt.loadNpmTasks('grunt-contrib-uglify');
 
+  // Load the plugin that provides the "yuidoc" task.
+  grunt.loadNpmTasks('grunt-contrib-yuidoc');
+
   // Default task(s).
-  grunt.registerTask('default', ['uglify']);
+  grunt.registerTask('default', ['uglify', 'yuidoc']);
 
 };
